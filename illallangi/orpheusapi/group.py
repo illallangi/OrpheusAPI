@@ -20,6 +20,8 @@ class Group(object):
     def _keys(self):
         return [
             'name',
+            'catalogueNumber',
+            'releaseType',     
             'releaseTypeName',
             'year',
             'musicInfo',
@@ -28,8 +30,6 @@ class Group(object):
             'wikiImage',       # Missing Property
             'id',              # Missing Property
             'recordLabel',     # Missing Property
-            'catalogueNumber', # Missing Property
-            'releaseType',     # Missing Property
             'categoryId',      # Missing Property
             'categoryName',    # Missing Property
             'time',            # Missing Property
@@ -47,6 +47,14 @@ class Group(object):
     @cached_property
     def name(self):
         return self._dictionary['name']
+
+    @cached_property
+    def catalogueNumber(self):
+        return self._dictionary['catalogueNumber']
+
+    @cached_property
+    def releaseType(self):
+        return int(self._dictionary['releaseType'])
 
     @cached_property
     def releaseTypeName(self):

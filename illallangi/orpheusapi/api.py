@@ -40,7 +40,10 @@ class API(object):
         group = self.get_group(hash)
         musicInfo = group.musicInfo
         artists = musicInfo.artists
-        return f'{artists[0].name} - {group.releaseTypeName} - {group.year} - {group.name} [{torrent.media} {torrent.format}] {{{torrent.remasterCatalogueNumber}}}/'
+        if group.releaseType == 3:
+            return f'{group.releaseTypeName} - {group.year} - {group.name} [{torrent.media} {torrent.format}] {{{torrent.remasterCatalogueNumber or group.catalogueNumber}}}/'.replace(' {}','').replace(' []', '')
+        else:
+            return f'{artists[0].name} - {group.releaseTypeName} - {group.year} - {group.name} [{torrent.media} {torrent.format}] {{{torrent.remasterCatalogueNumber}}}/'.replace(' []', '')
 
     def get_torrent(self, hash):
         return Torrent(self.get(self.endpoint / 'ajax.php' % {'action': 'torrent', 'hash': hash.upper()})['torrent'])
