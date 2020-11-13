@@ -72,3 +72,7 @@ class API(object):
                     r.json()['response'],
                     expire=EXPIRE)
             return cache[url]
+
+    @property
+    def supported_trackers(self):
+        return ['opsfet.ch']
