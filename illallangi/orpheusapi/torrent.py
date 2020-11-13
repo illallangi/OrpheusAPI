@@ -19,6 +19,9 @@ class Torrent(object):
         return [
             'filePath',
             'infoHash',
+            'format',
+            'media',
+            'remasterCatalogueNumber',
         ]
 
     def __repr__(self):
@@ -34,3 +37,15 @@ class Torrent(object):
     @cached_property
     def filePath(self):
         return self._dictionary['filePath']
+
+    @cached_property
+    def format(self):
+        return self._dictionary['format']
+
+    @cached_property
+    def media(self):
+        return self._dictionary['media']
+
+    @cached_property
+    def remasterCatalogueNumber(self):
+        return self._dictionary['remasterCatalogueNumber']

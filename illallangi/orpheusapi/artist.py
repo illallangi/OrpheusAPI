@@ -2,10 +2,7 @@ from functools import cached_property
 
 from loguru import logger
 
-from .musicinfo import MusicInfo
-
-
-class Group(object):
+class Artist(object):
     def __init__(self, dictionary, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._dictionary = dictionary
@@ -19,30 +16,20 @@ class Group(object):
     @property
     def _keys(self):
         return [
+            'id',
             'name',
-            'releaseTypeName',
-            'year',
-            'musicInfo',
         ]
 
     def __repr__(self):
-        return f'{self.__class__}{self.name}'
+        return f'{self.__class__}{self.name} ({self.id})'
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name} ({self.id})'
+
+    @cached_property
+    def id(self):
+        return self._dictionary['id']
 
     @cached_property
     def name(self):
         return self._dictionary['name']
-
-    @cached_property
-    def releaseTypeName(self):
-        return self._dictionary['releaseTypeName']
-
-    @cached_property
-    def year(self):
-        return int(self._dictionary['year'])
-
-    @cached_property
-    def musicInfo(self):
-        return MusicInfo(self._dictionary['musicInfo'])

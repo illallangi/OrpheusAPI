@@ -13,7 +13,6 @@ from illallangi.orpheusapi import API as ORP_API, ENDPOINTDEF as ORP_ENDPOINTDEF
 @option('--log-level',
         type=CHOICE(['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG', 'SUCCESS', 'TRACE'],
                     case_sensitive=False),
-        envvar='HARVESTR_LOG_LEVEL',
         default='DEBUG')
 @option('--slack-webhook',
         type=STRING,
@@ -22,7 +21,7 @@ from illallangi.orpheusapi import API as ORP_API, ENDPOINTDEF as ORP_ENDPOINTDEF
 @option('--slack-username',
         type=STRING,
         envvar='SLACK_USERNAME',
-        default='Harvestr')
+        default=__name__)
 @option('--slack-format',
         type=STRING,
         envvar='SLACK_FORMAT',
@@ -66,7 +65,6 @@ def get_index(api_key, endpoint, cache):
           type=STRING,
           required=True)
 def get_torrent(api_key, endpoint, hash, cache):
-    hash = hash.upper()
     logger.info(ORP_API(api_key, endpoint, cache).get_torrent(hash))
 
 
@@ -83,8 +81,23 @@ def get_torrent(api_key, endpoint, hash, cache):
           type=STRING,
           required=True)
 def get_group(api_key, endpoint, hash, cache):
-    hash = hash.upper()
     logger.info(ORP_API(api_key, endpoint, cache).get_group(hash))
+
+
+@cli.command(name='get-directory')
+@option('--api-key',
+        type=STRING,
+        required=True)
+@option('--endpoint',
+        type=STRING,
+        required=False,
+        default=ORP_ENDPOINTDEF)
+@option('--cache/--no-cache', default=True)
+@argument('hash',
+          type=STRING,
+          required=True)
+def get_directory(api_key, endpoint, hash, cache):
+    logger.info(ORP_API(api_key, endpoint, cache).get_directory(hash))
 
 
 if __name__ == "__main__":
