@@ -23,6 +23,19 @@ class Group(object):
             'releaseTypeName',
             'year',
             'musicInfo',
+            'wikiBody',        # Missing Property
+            'wikiBBcode',      # Missing Property
+            'wikiImage',       # Missing Property
+            'id',              # Missing Property
+            'recordLabel',     # Missing Property
+            'catalogueNumber', # Missing Property
+            'releaseType',     # Missing Property
+            'categoryId',      # Missing Property
+            'categoryName',    # Missing Property
+            'time',            # Missing Property
+            'vanityHouse',     # Missing Property
+            'isBookmarked',    # Missing Property
+            'tags',            # Missing Property
         ]
 
     def __repr__(self):

@@ -22,6 +22,30 @@ class Torrent(object):
             'format',
             'media',
             'remasterCatalogueNumber',
+            'id', # Missing Property
+            'encoding', # Missing Property
+            'remastered', # Missing Property
+            'remasterYear', # Missing Property
+            'remasterTitle', # Missing Property
+            'remasterRecordLabel', # Missing Property
+            'scene', # Missing Property
+            'hasLog', # Missing Property
+            'hasCue', # Missing Property
+            'logChecksum', # Missing Property
+            'logCount', # Missing Property
+            'logScore', # Missing Property
+            'fileCount', # Missing Property
+            'size', # Missing Property
+            'seeders', # Missing Property
+            'leechers', # Missing Property
+            'snatched', # Missing Property
+            'freeTorrent', # Missing Property
+            'reported', # Missing Property
+            'time', # Missing Property
+            'description', # Missing Property
+            'fileList', # Missing Property
+            'userId', # Missing Property
+            'username', # Missing Property
         ]
 
     def __repr__(self):
