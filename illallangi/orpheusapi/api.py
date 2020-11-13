@@ -10,6 +10,8 @@ from yarl import URL
 
 from .tokenbucket import TokenBucket
 from .index import Index
+from .torrent import Torrent
+from .group import Group
 
 ENDPOINTDEF = 'https://orpheus.network/'
 EXPIRE = 7 * 24 * 60 * 60
@@ -25,13 +27,22 @@ class API(object):
         self.bucket = TokenBucket(10, 5 / 10)
 
     def get_index(self):
+        return Index(self.get(self.endpoint / 'ajax.php' % {'action': 'index'}))
+
+    def get_torrent(self, hash):
+        return Torrent(self.get(self.endpoint / 'ajax.php' % {'action': 'torrent', 'hash': hash.upper()})['torrent'])
+
+    def get_group(self, hash):
+        return Group(self.get(self.endpoint / 'ajax.php' % {'action': 'torrent', 'hash': hash.upper()})['group'])
+
+    def get(self, url):
         with Cache(self.config_path) as cache:
-            if not self.cache or __name__ not in cache:
+            if not self.cache or url not in cache:
                 self.bucket.consume()
-                logger.trace(__name__)
+                logger.trace(url)
                 try:
                     r = http_get(
-                        self.endpoint / 'ajax.php' % {'action': 'index'},
+                        url,
                         headers={
                             'User-Agent': 'illallangi-orpheusapi/0.0.1',
                             'Authorization': f'token {self.api_key}'
@@ -50,7 +61,7 @@ class API(object):
                 logger.trace(r.headers)
                 logger.trace(r.text)
                 cache.set(
-                    __name__,
+                    url,
                     r.json()['response'],
                     expire=EXPIRE)
-            return Index(cache[__name__])
+            return cache[url]

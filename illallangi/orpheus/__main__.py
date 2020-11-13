@@ -1,6 +1,6 @@
 from sys import stderr
 
-from click import Choice as CHOICE, STRING, group, option
+from click import Choice as CHOICE, STRING, argument, group, option
 
 from loguru import logger
 
@@ -51,6 +51,40 @@ def cli(log_level, slack_webhook, slack_username, slack_format):
 @option('--cache/--no-cache', default=True)
 def get_index(api_key, endpoint, cache):
     logger.info(ORP_API(api_key, endpoint, cache).get_index())
+
+
+@cli.command(name='get-torrent')
+@option('--api-key',
+        type=STRING,
+        required=True)
+@option('--endpoint',
+        type=STRING,
+        required=False,
+        default=ORP_ENDPOINTDEF)
+@option('--cache/--no-cache', default=True)
+@argument('hash',
+          type=STRING,
+          required=True)
+def get_torrent(api_key, endpoint, hash, cache):
+    hash = hash.upper()
+    logger.info(ORP_API(api_key, endpoint, cache).get_torrent(hash))
+
+
+@cli.command(name='get-group')
+@option('--api-key',
+        type=STRING,
+        required=True)
+@option('--endpoint',
+        type=STRING,
+        required=False,
+        default=ORP_ENDPOINTDEF)
+@option('--cache/--no-cache', default=True)
+@argument('hash',
+          type=STRING,
+          required=True)
+def get_group(api_key, endpoint, hash, cache):
+    hash = hash.upper()
+    logger.info(ORP_API(api_key, endpoint, cache).get_group(hash))
 
 
 if __name__ == "__main__":
