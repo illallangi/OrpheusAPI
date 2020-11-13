@@ -96,8 +96,27 @@ def get_group(api_key, endpoint, hash, cache):
 @argument('hash',
           type=STRING,
           required=True)
-def get_directory(api_key, endpoint, hash, cache):
+def get_directory(api_key, endpoint, cache, hash):
     logger.info(ORP_API(api_key, endpoint, cache).get_directory(hash))
+
+
+@cli.command(name='rename-torrent-file')
+@option('--api-key',
+        type=STRING,
+        required=True)
+@option('--endpoint',
+        type=STRING,
+        required=False,
+        default=ORP_ENDPOINTDEF)
+@option('--cache/--no-cache', default=True)
+@argument('hash',
+          type=STRING,
+          required=True)
+@argument('path',
+          type=STRING,
+          required=True)
+def rename_torrent_file(api_key, endpoint, cache, hash, path):
+    logger.info(ORP_API(api_key, endpoint, cache).rename_torrent_file(hash, path))
 
 
 if __name__ == "__main__":

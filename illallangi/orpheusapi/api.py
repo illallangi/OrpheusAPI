@@ -4,6 +4,8 @@ from diskcache import Cache
 
 from loguru import logger
 
+from re import sub
+
 from requests import get as http_get, HTTPError
 
 from yarl import URL
@@ -29,12 +31,16 @@ class API(object):
     def get_index(self):
         return Index(self.get(self.endpoint / 'ajax.php' % {'action': 'index'}))
 
+    def rename_torrent_file(self, hash, path):
+        directory = self.get_directory(hash)
+        return sub('^.*?\/+', directory, path)
+
     def get_directory(self, hash):
         torrent = self.get_torrent(hash)
         group = self.get_group(hash)
         musicInfo = group.musicInfo
         artists = musicInfo.artists
-        return f'{artists[0].name} - {group.releaseTypeName} - {group.year} - {group.name} [{torrent.media} {torrent.format}] {{{torrent.remasterCatalogueNumber}}}'
+        return f'{artists[0].name} - {group.releaseTypeName} - {group.year} - {group.name} [{torrent.media} {torrent.format}] {{{torrent.remasterCatalogueNumber}}}/'
 
     def get_torrent(self, hash):
         return Torrent(self.get(self.endpoint / 'ajax.php' % {'action': 'torrent', 'hash': hash.upper()})['torrent'])
