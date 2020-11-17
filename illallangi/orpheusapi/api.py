@@ -48,7 +48,7 @@ class API(object):
             return
         musicInfo = group.musicInfo
         artists = musicInfo.artists
-        if group.releaseType == 3:
+        if group.releaseType == 3 or group.releaseType == 7:
             return f'{group.releaseTypeName} - {group.year} - {group.name} [{" ".join([torrent.media, torrent.format, torrent.encoding]).strip()}] {{{torrent.remasterCatalogueNumber or group.catalogueNumber}}}'.replace(' {}','').replace(' []', '').replace('/','-') + '/'
         else:
             return f'{artists[0].name} - {group.releaseTypeName} - {group.year} - {group.name} [{" ".join([torrent.media, torrent.format, torrent.encoding]).strip()}] {{{torrent.remasterCatalogueNumber}}}'.replace(' {}', '').replace(' []', '').replace('/','-') + '/'
