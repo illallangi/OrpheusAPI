@@ -3,7 +3,7 @@
 [![Image Size](https://images.microbadger.com/badges/image/illallangi/orpheusapi.svg)](https://microbadger.com/images/illallangi/orpheusapi)
 ![Build](https://github.com/illallangi/OrpheusAPI/workflows/Build/badge.svg)
 
-TODO: SET DESCRIPTION
+Python bindings for the [Orpheus](https://orpheus.network) [API](https://github.com/OPSnet/Gazelle/wiki/JSON-API-Documentation).
 
 ## Installation
 
