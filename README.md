@@ -7,8 +7,27 @@ Python bindings for the [Orpheus](https://orpheus.network) [API](https://github.
 
 ## Installation
 
-TODO: DOCUMENT INSTALLATION
+```shell
+pip install git+git://github.com/illallangi/OrpheusAPI.git
+```
 
 ## Usage
 
-TODO: DOCUMENT USAGE
+```shell
+$ orpheus-tool
+Usage: orpheus-tool [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --log-level [CRITICAL|ERROR|WARNING|INFO|DEBUG|SUCCESS|TRACE]
+  --slack-webhook TEXT
+  --slack-username TEXT
+  --slack-format TEXT
+  --help                          Show this message and exit.
+
+Commands:
+  get-directory
+  get-group
+  get-index
+  get-torrent
+  rename-torrent-file
+```
