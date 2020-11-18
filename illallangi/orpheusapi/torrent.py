@@ -24,29 +24,29 @@ class Torrent(object):
             'remasterCatalogueNumber',
             'encoding',
             'mb_albumid',
-            'id', # Missing Property
-            'remastered', # Missing Property
-            'remasterYear', # Missing Property
-            'remasterTitle', # Missing Property
-            'remasterRecordLabel', # Missing Property
-            'scene', # Missing Property
-            'hasLog', # Missing Property
-            'hasCue', # Missing Property
-            'logChecksum', # Missing Property
-            'logCount', # Missing Property
-            'logScore', # Missing Property
-            'fileCount', # Missing Property
-            'size', # Missing Property
-            'seeders', # Missing Property
-            'leechers', # Missing Property
-            'snatched', # Missing Property
-            'freeTorrent', # Missing Property
-            'reported', # Missing Property
-            'time', # Missing Property
-            'description', # Missing Property
-            'fileList', # Missing Property
-            'userId', # Missing Property
-            'username', # Missing Property
+            'id',  # TODO: Create Property
+            'remastered',  # TODO: Create Property
+            'remasterYear',  # TODO: Create Property
+            'remasterTitle',  # TODO: Create Property
+            'remasterRecordLabel',  # TODO: Create Property
+            'scene',  # TODO: Create Property
+            'hasLog',  # TODO: Create Property
+            'hasCue',  # TODO: Create Property
+            'logChecksum',  # TODO: Create Property
+            'logCount',  # TODO: Create Property
+            'logScore',  # TODO: Create Property
+            'fileCount',  # TODO: Create Property
+            'size',  # TODO: Create Property
+            'seeders',  # TODO: Create Property
+            'leechers',  # TODO: Create Property
+            'snatched',  # TODO: Create Property
+            'freeTorrent',  # TODO: Create Property
+            'reported',  # TODO: Create Property
+            'time',  # TODO: Create Property
+            'description',  # TODO: Create Property
+            'fileList',  # TODO: Create Property
+            'userId',  # TODO: Create Property
+            'username',  # TODO: Create Property
         ]
 
     def __repr__(self):
@@ -73,7 +73,7 @@ class Torrent(object):
 
     @cached_property
     def mb_albumid(self):
-        return self._dictionary.get('mb_albumid',None)
+        return self._dictionary.get('mb_albumid', None)
 
     @cached_property
     def remasterCatalogueNumber(self):

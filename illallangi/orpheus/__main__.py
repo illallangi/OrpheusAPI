@@ -2,11 +2,11 @@ from sys import stderr
 
 from click import Choice as CHOICE, STRING, argument, group, option
 
+from illallangi.orpheusapi import API as ORP_API, ENDPOINTDEF as ORP_ENDPOINTDEF
+
 from loguru import logger
 
 from notifiers.logging import NotificationHandler
-
-from illallangi.orpheusapi import API as ORP_API, ENDPOINTDEF as ORP_ENDPOINTDEF
 
 
 @group()
