@@ -14,8 +14,8 @@ from requests import HTTPError, get as http_get
 
 from yarl import URL
 
-from .index import Index
 from .group import Group
+from .index import Index
 from .tokenbucket import TokenBucket
 from .torrent import Torrent
 
@@ -62,7 +62,7 @@ class API(object):
             release = f' {{{torrent.mb_albumid}}}'
 
         if group.releaseType == 3 or group.releaseType == 7:
-            return f'{group.releaseTypeName} - {group.year} - {group.name} [{" ".join([torrent.media, torrent.format, torrent.encoding]).strip()}]{release}'.replace(' []', '').replace('/','-') + '/'
+            return f'{group.releaseTypeName} - {group.year} - {group.name} [{" ".join([torrent.media, torrent.format, torrent.encoding]).strip()}]{release}'.replace(' []', '').replace('/', '-') + '/'
         else:
             return f'{artists[0].name} - {group.releaseTypeName} - {group.year} - {group.name} [{" ".join([torrent.media, torrent.format, torrent.encoding]).strip()}]{release}'.replace(' []', '').replace('/', '-') + '/'
 
