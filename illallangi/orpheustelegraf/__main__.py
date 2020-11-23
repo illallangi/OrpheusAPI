@@ -1,11 +1,10 @@
-from datetime import datetime
 from typing import Dict
 
 from click import STRING, command, option
 
 from illallangi.orpheusapi import API as ORP_API, ENDPOINTDEF as ORP_ENDPOINTDEF
 
-from telegraf_pyplug.main import datetime_tzinfo_to_nano_unix_timestamp, print_influxdb_format
+from telegraf_pyplug.main import print_influxdb_format
 
 METRIC_NAME: str = 'orpheus'
 METRIC_DATE: str = '01.01.2020 03:00:00+0300'
@@ -23,7 +22,6 @@ METRIC_DATE: str = '01.01.2020 03:00:00+0300'
 @option('--cache/--no-cache', default=True)
 def cli(api_key, endpoint, cache):
     index = ORP_API(api_key, endpoint, cache).get_index()
-    date = datetime.strptime(METRIC_DATE, '%d.%m.%Y %H:%M:%S%z')
 
     tags: Dict[str, str] = {
         'id': index.id,
@@ -44,7 +42,7 @@ def cli(api_key, endpoint, cache):
         measurement=METRIC_NAME,
         tags=tags,
         fields=fields,
-        nano_timestamp=datetime_tzinfo_to_nano_unix_timestamp(date)
+        add_timestamp=True
     )
 
 
