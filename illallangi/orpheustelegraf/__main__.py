@@ -32,8 +32,8 @@ def cli(api_key, endpoint, cache):
     }
 
     fields: Dict[str, int] = {
-        'uploaded': index.userstats.uploaded,
-        'downloaded': index.userstats.downloaded,
+        'uploaded': int(index.userstats.uploaded),
+        'downloaded': int(index.userstats.downloaded),
         'ratio': index.userstats.ratio,
         'requiredratio': index.userstats.requiredratio,
         'bonuspoints': index.userstats.bonuspoints,

@@ -1,5 +1,7 @@
 from functools import cached_property
 
+from bytesize import Size
+
 from loguru import logger
 
 
@@ -32,11 +34,11 @@ class UserStats(object):
 
     @cached_property
     def uploaded(self):
-        return int(self._dictionary['uploaded'])
+        return Size(int(self._dictionary['uploaded']))
 
     @cached_property
     def downloaded(self):
-        return int(self._dictionary['downloaded'])
+        return Size(int(self._dictionary['downloaded']))
 
     @cached_property
     def ratio(self):

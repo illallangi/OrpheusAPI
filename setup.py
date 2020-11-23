@@ -26,6 +26,7 @@ setuptools.setup(
         ],
     },
     install_requires=[
+        'bytesize',
         'click',
         'diskcache',
         'jsonpatch',
