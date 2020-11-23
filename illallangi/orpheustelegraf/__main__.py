@@ -1,11 +1,11 @@
-from click import command, STRING, option
-
-from illallangi.orpheusapi import API as ORP_API, ENDPOINTDEF as ORP_ENDPOINTDEF
-
 from datetime import datetime
 from typing import Dict
 
-from telegraf_pyplug.main import print_influxdb_format, datetime_tzinfo_to_nano_unix_timestamp
+from click import STRING, command, option
+
+from illallangi.orpheusapi import API as ORP_API, ENDPOINTDEF as ORP_ENDPOINTDEF
+
+from telegraf_pyplug.main import datetime_tzinfo_to_nano_unix_timestamp, print_influxdb_format
 
 METRIC_NAME: str = 'orpheus'
 METRIC_DATE: str = '01.01.2020 03:00:00+0300'
