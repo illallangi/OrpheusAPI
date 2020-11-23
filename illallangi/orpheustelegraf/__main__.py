@@ -24,7 +24,7 @@ METRICNAMEDEF = 'orpheus'
         default=ORP_ENDPOINTDEF)
 @option('--cache/--no-cache', default=True)
 def cli(metric_name, api_key, endpoint, cache):
-    index = ORP_API(api_key, endpoint, cache).get_index()
+    index = ORP_API(api_key, endpoint, cache, success_expiry=600).get_index()
 
     tags: Dict[str, str] = {
         'id': index.id,
