@@ -18,8 +18,38 @@ class UserStats(object):
     def _keys(self):
         return [
             'class',
+            'uploaded',
+            'downloaded',
+            'ratio',
+            'requiredratio',
+            'bonusPoints',
+            'bonusPointsPerHour',
         ]
 
     @cached_property
     def userclass(self):
-        return self._dictionary['class']
+        return str(self._dictionary['class'])
+
+    @cached_property
+    def uploaded(self):
+        return int(self._dictionary['uploaded'])
+
+    @cached_property
+    def downloaded(self):
+        return int(self._dictionary['downloaded'])
+
+    @cached_property
+    def ratio(self):
+        return float(self._dictionary['ratio'])
+
+    @cached_property
+    def requiredratio(self):
+        return float(self._dictionary['requiredratio'])
+
+    @cached_property
+    def bonuspoints(self):
+        return int(self._dictionary['bonusPoints'])
+
+    @cached_property
+    def bonuspointsperhour(self):
+        return float(self._dictionary['bonusPointsPerHour'])
