@@ -6,11 +6,14 @@ from illallangi.orpheusapi import API as ORP_API, ENDPOINTDEF as ORP_ENDPOINTDEF
 
 from telegraf_pyplug.main import print_influxdb_format
 
-METRIC_NAME: str = 'orpheus'
-METRIC_DATE: str = '01.01.2020 03:00:00+0300'
+METRICNAMEDEF = 'orpheus'
 
 
 @command()
+@option('--metric-name',
+        type=STRING,
+        required=False,
+        default=METRICNAMEDEF)
 @option('--api-key',
         '--orpheus-api-key',
         type=STRING,
@@ -20,7 +23,7 @@ METRIC_DATE: str = '01.01.2020 03:00:00+0300'
         required=False,
         default=ORP_ENDPOINTDEF)
 @option('--cache/--no-cache', default=True)
-def cli(api_key, endpoint, cache):
+def cli(metric_name, api_key, endpoint, cache):
     index = ORP_API(api_key, endpoint, cache).get_index()
 
     tags: Dict[str, str] = {
@@ -39,7 +42,7 @@ def cli(api_key, endpoint, cache):
     }
 
     print_influxdb_format(
-        measurement=METRIC_NAME,
+        measurement=metric_name,
         tags=tags,
         fields=fields,
         add_timestamp=True
