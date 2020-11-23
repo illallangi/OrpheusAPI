@@ -21,8 +21,7 @@ setuptools.setup(
     python_requires='>=3.6',
     entry_points={
         'console_scripts': [
-            'orpheus-tool=illallangi.orpheus:__main__.cli',
-            'orpheus-telegraf=illallangi.orpheustelegraf:__main__.cli'
+            'orpheus-tool=illallangi.orpheus:__main__.cli'
         ],
     },
     install_requires=[
@@ -33,7 +32,6 @@ setuptools.setup(
         'loguru',
         'notifiers',
         'requests',
-        'telegraf_pyplug',
         'yarl',
     ]
 )
